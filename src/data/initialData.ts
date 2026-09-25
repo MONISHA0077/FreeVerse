@@ -1,0 +1,1287 @@
+import {
+  Student,
+  Client,
+  Task,
+  Application,
+  Project,
+  Message,
+  PlatformEvent,
+  EventRegistration,
+  GalleryItem,
+  Review,
+  NotificationItem,
+  Report
+} from '../types';
+
+export const INITIAL_STUDENTS: Student[] = [
+  {
+    id: 'stu-1',
+    studentId: '24CSE032',
+    name: 'Monisha K',
+    email: 'monisha0733@gmail.com',
+    phone: '+91 98451 23456',
+    role: 'Full Stack Developer',
+    bio: 'Passionate 3rd-year CS student specialized in building high-performance web applications with React, TypeScript, Node.js, and Python. Open-source contributor and hackathon finalist.',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    department: 'Computer Science and Engineering',
+    year: '3rd Year',
+    skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Python', 'Java', 'SQL', 'TypeScript', 'Tailwind CSS'],
+    availability: 'Available',
+    rating: 4.9,
+    ratingCount: 12,
+    completedProjectsCount: 6,
+    status: 'Active',
+    joinedDate: '2025-08-15',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Computer Science & Engineering',
+      course: 'B.Tech Computer Science',
+      year: '2023 - 2027'
+    },
+    portfolio: [
+      {
+        id: 'port-1',
+        title: 'Campus Hub - Student Resource Sharing Platform',
+        description: 'A full-stack collaborative repository for lecture notes, past exam papers, and peer tutoring scheduling used by 1,200+ students.',
+        technologies: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
+        githubUrl: 'https://github.com/monishak/campus-hub',
+        liveUrl: 'https://campus-hub-demo.freeverse.app',
+        imageColor: 'from-blue-600 to-indigo-700',
+        completedAt: 'Jan 2026'
+      },
+      {
+        id: 'port-2',
+        title: 'FinGrow Budget Engine & Financial Planner',
+        description: 'Interactive budgeting calculator and cash flow visualizer built for micro-finance student initiatives.',
+        technologies: ['React', 'TypeScript', 'Chart.js', 'SQL'],
+        githubUrl: 'https://github.com/monishak/fingrow-budget',
+        liveUrl: 'https://fingrow-demo.freeverse.app',
+        imageColor: 'from-emerald-600 to-teal-700',
+        completedAt: 'Feb 2026'
+      },
+      {
+        id: 'port-3',
+        title: 'AI Lecture Transcript Classifier',
+        description: 'Automated Python script that classifies audio lectures into structured markdown notes with key concept indexing.',
+        technologies: ['Python', 'FastAPI', 'Natural Language Processing'],
+        githubUrl: 'https://github.com/monishak/lecture-classifier',
+        imageColor: 'from-purple-600 to-pink-700',
+        completedAt: 'Nov 2025'
+      }
+    ],
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/monisha-k',
+      github: 'https://github.com/monishak',
+      website: 'https://monishak.dev',
+      instagram: 'https://instagram.com/monisha_codes'
+    },
+    badges: ['First Project', '5 Projects Completed', 'Event Participant', 'Community Contributor', 'Top Rated']
+  },
+  {
+    id: 'stu-2',
+    studentId: '24ECE044',
+    name: 'Rahul Varma',
+    email: 'rahul.varma@campus.edu',
+    phone: '+91 98452 34567',
+    role: 'UI/UX & Product Designer',
+    bio: 'Crafting user-centric design systems, mobile mockups, and sleek micro-interactions. Obsessed with typography, spacing, and accessible interfaces.',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
+    department: 'Electronics & Communication',
+    year: '3rd Year',
+    skills: ['Figma', 'UI/UX Design', 'Design Systems', 'Wireframing', 'Prototyping', 'User Research', 'HTML/CSS'],
+    availability: 'Available',
+    rating: 4.8,
+    ratingCount: 8,
+    completedProjectsCount: 4,
+    status: 'Active',
+    joinedDate: '2025-09-01',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Electronics & Communication',
+      course: 'B.Tech ECE',
+      year: '2023 - 2027'
+    },
+    portfolio: [
+      {
+        id: 'port-4',
+        title: 'MedPulse Patient Companion App UI',
+        description: 'Complete Figma design system and high-fidelity clickable prototype for clinical appointment scheduling.',
+        technologies: ['Figma', 'Prototyping', 'Design Tokens'],
+        imageColor: 'from-cyan-600 to-blue-700',
+        completedAt: 'Dec 2025'
+      }
+    ],
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/rahul-varma',
+      github: 'https://github.com/rahulvarma-design'
+    },
+    badges: ['First Project', 'Event Participant']
+  },
+  {
+    id: 'stu-3',
+    studentId: '24IT089',
+    name: 'Ananya Roy',
+    email: 'ananya.roy@campus.edu',
+    phone: '+91 98453 45678',
+    role: 'Frontend Specialist (React/Next.js)',
+    bio: 'Frontend enthusiast focused on fluid animations, modern CSS, and component libraries. Experienced in responsive web applications.',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+    department: 'Information Technology',
+    year: '2nd Year',
+    skills: ['React', 'JavaScript', 'Tailwind CSS', 'Next.js', 'HTML', 'Git'],
+    availability: 'Busy',
+    rating: 4.7,
+    ratingCount: 5,
+    completedProjectsCount: 3,
+    status: 'Active',
+    joinedDate: '2025-09-15',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Information Technology',
+      course: 'B.Tech IT',
+      year: '2024 - 2028'
+    },
+    portfolio: [
+      {
+        id: 'port-5',
+        title: 'EcoFootprint Carbon Calculator',
+        description: 'Interactive browser extension and landing page calculating daily digital carbon footprint.',
+        technologies: ['React', 'Tailwind CSS', 'Vite'],
+        imageColor: 'from-emerald-500 to-green-700',
+        completedAt: 'Jan 2026'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/ananyaroy',
+      linkedin: 'https://linkedin.com/in/ananyaroy'
+    },
+    badges: ['First Project', 'Competition Participant']
+  },
+  {
+    id: 'stu-4',
+    studentId: '24AIML012',
+    name: 'Karthik Raman',
+    email: 'karthik.r@campus.edu',
+    phone: '+91 98454 56789',
+    role: 'AI / Machine Learning Engineer',
+    bio: 'Working with PyTorch, Scikit-Learn, and Python data pipelines. Published research paper on computer vision in agricultural pest detection.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    department: 'Artificial Intelligence & Data Science',
+    year: '4th Year',
+    skills: ['Python', 'PyTorch', 'TensorFlow', 'SQL', 'FastAPI', 'Pandas', 'Docker'],
+    availability: 'Available',
+    rating: 5.0,
+    ratingCount: 15,
+    completedProjectsCount: 7,
+    status: 'Active',
+    joinedDate: '2025-07-20',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'AI & Data Science',
+      course: 'B.Tech AI & Data Science',
+      year: '2022 - 2026'
+    },
+    portfolio: [
+      {
+        id: 'port-6',
+        title: 'Neural OCR & Doc Analyzer',
+        description: 'Document extraction API identifying tables, handwriting, and text summaries from academic research papers.',
+        technologies: ['Python', 'OpenCV', 'PyTorch'],
+        githubUrl: 'https://github.com/karthikr/neural-ocr',
+        imageColor: 'from-indigo-600 to-violet-800',
+        completedAt: 'Dec 2025'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/karthikr',
+      linkedin: 'https://linkedin.com/in/karthik-raman'
+    },
+    badges: ['First Project', '5 Projects Completed', 'Top Rated', 'Hackathon Finalist']
+  },
+  {
+    id: 'stu-5',
+    studentId: '24CSE110',
+    name: 'Divya Nair',
+    email: 'divya.n@campus.edu',
+    phone: '+91 98455 67890',
+    role: 'Mobile App Developer (Flutter/React Native)',
+    bio: 'Cross-platform mobile developer creating intuitive iOS and Android applications with clean architecture and offline sync.',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+    department: 'Computer Science and Engineering',
+    year: '3rd Year',
+    skills: ['Flutter', 'React Native', 'Dart', 'JavaScript', 'Firebase/Local DB', 'REST APIs'],
+    availability: 'Available',
+    rating: 4.9,
+    ratingCount: 9,
+    completedProjectsCount: 5,
+    status: 'Active',
+    joinedDate: '2025-08-28',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Computer Science & Engineering',
+      course: 'B.Tech CSE',
+      year: '2023 - 2027'
+    },
+    portfolio: [
+      {
+        id: 'port-7',
+        title: 'Campus Transit Realtime Tracker',
+        description: 'Cross-platform mobile application displaying live campus shuttle locations with push alerts.',
+        technologies: ['Flutter', 'Google Maps API', 'Dart'],
+        imageColor: 'from-amber-600 to-orange-700',
+        completedAt: 'Jan 2026'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/divyanair',
+      linkedin: 'https://linkedin.com/in/divya-nair'
+    },
+    badges: ['First Project', '5 Projects Completed']
+  },
+  {
+    id: 'stu-6',
+    studentId: '24MECH033',
+    name: 'Siddharth Menon',
+    email: 'siddharth.m@campus.edu',
+    phone: '+91 98456 78901',
+    role: 'Graphic & Brand Designer',
+    bio: 'Transforming ideas into memorable brand identities, 3D assets, vector illustrations, and marketing collateral.',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+    department: 'Mechanical Engineering',
+    year: '4th Year',
+    skills: ['Adobe Illustrator', 'Photoshop', 'Blender', 'Logo Design', 'Brand Strategy', 'Figma'],
+    availability: 'Not Available',
+    rating: 4.6,
+    ratingCount: 6,
+    completedProjectsCount: 3,
+    status: 'Active',
+    joinedDate: '2025-09-20',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Mechanical Engineering',
+      course: 'B.Tech Mechanical',
+      year: '2022 - 2026'
+    },
+    portfolio: [
+      {
+        id: 'port-8',
+        title: 'AeroTech Drone Brand System',
+        description: 'Complete visual identity package including 3D model renderings, pitch deck slides, and trade booth banners.',
+        technologies: ['Illustrator', 'Blender', 'Photoshop'],
+        imageColor: 'from-rose-600 to-pink-700',
+        completedAt: 'Nov 2025'
+      }
+    ],
+    socialLinks: {
+      website: 'https://siddharth-creatives.design',
+      linkedin: 'https://linkedin.com/in/siddharth-menon'
+    },
+    badges: ['First Project', 'Community Contributor']
+  },
+  {
+    id: 'stu-7',
+    studentId: '24DS054',
+    name: 'Pooja Hegde',
+    email: 'pooja.h@campus.edu',
+    phone: '+91 98457 89012',
+    role: 'Data Analyst & Visualization Specialist',
+    bio: 'Turning messy business data into actionable dashboards and clear storytelling. Proficient in SQL queries, Python analysis, and Tableau/PowerBI.',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    department: 'Data Science & Analytics',
+    year: '3rd Year',
+    skills: ['SQL', 'Python', 'Tableau', 'Power BI', 'Excel', 'Statistics', 'Pandas'],
+    availability: 'Available',
+    rating: 4.8,
+    ratingCount: 11,
+    completedProjectsCount: 5,
+    status: 'Active',
+    joinedDate: '2025-08-10',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Data Science & Analytics',
+      course: 'B.Tech Data Science',
+      year: '2023 - 2027'
+    },
+    portfolio: [
+      {
+        id: 'port-9',
+        title: 'University Placement Predictive Dashboard',
+        description: 'Historical cohort data analysis identifying salary trends, recruitment pipelines, and skill demand spikes.',
+        technologies: ['Python', 'SQL', 'Tableau'],
+        imageColor: 'from-teal-600 to-cyan-800',
+        completedAt: 'Jan 2026'
+      }
+    ],
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/pooja-hegde',
+      github: 'https://github.com/poojahegde'
+    },
+    badges: ['First Project', '5 Projects Completed', 'Top Rated']
+  },
+  {
+    id: 'stu-8',
+    studentId: '24IT037',
+    name: 'Arjun Das',
+    email: 'arjun.das@campus.edu',
+    phone: '+91 98458 90123',
+    role: 'Backend & Cloud DevOps Engineer',
+    bio: 'Building reliable REST APIs, database schemas, and automated CI/CD pipelines. Dedicated to Docker containers, Go, and AWS deployment.',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+    department: 'Information Technology',
+    year: '4th Year',
+    skills: ['Go', 'Node.js', 'PostgreSQL', 'Docker', 'AWS', 'Linux', 'REST APIs', 'Redis'],
+    availability: 'Available',
+    rating: 4.9,
+    ratingCount: 14,
+    completedProjectsCount: 6,
+    status: 'Active',
+    joinedDate: '2025-07-15',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Information Technology',
+      course: 'B.Tech IT',
+      year: '2022 - 2026'
+    },
+    portfolio: [
+      {
+        id: 'port-10',
+        title: 'MicroPay Distributed Ledger Simulator',
+        description: 'High-throughput payment queue handling 10,000 simulated requests per second using Redis and Go goroutines.',
+        technologies: ['Go', 'Redis', 'Docker'],
+        githubUrl: 'https://github.com/arjundas/micropay',
+        imageColor: 'from-slate-700 to-zinc-900',
+        completedAt: 'Dec 2025'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/arjundas',
+      linkedin: 'https://linkedin.com/in/arjun-das'
+    },
+    badges: ['First Project', '5 Projects Completed', 'Top Rated']
+  },
+  {
+    id: 'stu-9',
+    studentId: '24BBA021',
+    name: 'Sneha Patel',
+    email: 'sneha.patel@campus.edu',
+    phone: '+91 98459 01234',
+    role: 'Technical Content & Growth Strategist',
+    bio: 'Translating complex engineering specs into compelling blog posts, developer documentation, and startup launch copy.',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+    department: 'Business Administration & Management',
+    year: '2nd Year',
+    skills: ['Technical Writing', 'SEO', 'Content Strategy', 'Copywriting', 'Developer Docs', 'Social Media'],
+    availability: 'Available',
+    rating: 4.7,
+    ratingCount: 7,
+    completedProjectsCount: 4,
+    status: 'Active',
+    joinedDate: '2025-10-01',
+    education: {
+      college: 'School of Management & Enterprise',
+      department: 'Business Administration',
+      course: 'BBA Digital Marketing',
+      year: '2024 - 2027'
+    },
+    portfolio: [
+      {
+        id: 'port-11',
+        title: 'DevOps Handbook for Beginners',
+        description: 'Comprehensive 8-part tutorial series breaking down Kubernetes concepts that attracted 45,000 readers.',
+        technologies: ['Markdown', 'Documentation', 'SEO'],
+        liveUrl: 'https://dev.to/snehapatel',
+        imageColor: 'from-fuchsia-600 to-purple-800',
+        completedAt: 'Feb 2026'
+      }
+    ],
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/sneha-patel',
+      website: 'https://snehawrites.tech'
+    },
+    badges: ['First Project', 'Community Contributor']
+  },
+  {
+    id: 'stu-10',
+    studentId: '24CSE015',
+    name: 'Vikramaditya Rao',
+    email: 'vikram.rao@campus.edu',
+    phone: '+91 98460 12345',
+    role: 'Cybersecurity & Web Penetration Tester',
+    bio: 'Ethical hacker and CTF enthusiast auditing smart contracts and standard web applications for OWASP Top 10 vulnerabilities.',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+    department: 'Computer Science and Engineering',
+    year: '4th Year',
+    skills: ['Cybersecurity', 'Ethical Hacking', 'OWASP', 'Linux', 'Python', 'Wireshark', 'Burp Suite'],
+    availability: 'Available',
+    rating: 4.9,
+    ratingCount: 10,
+    completedProjectsCount: 5,
+    status: 'Active',
+    joinedDate: '2025-08-05',
+    education: {
+      college: 'Institute of Engineering & Technology',
+      department: 'Computer Science & Engineering',
+      course: 'B.Tech CSE Cyber Focus',
+      year: '2022 - 2026'
+    },
+    portfolio: [
+      {
+        id: 'port-12',
+        title: 'Open Source Vulnerability Scanner',
+        description: 'Automated script auditing CORS headers, missing security cookies, and outdated dependency alerts.',
+        technologies: ['Python', 'Network Security', 'Bash'],
+        githubUrl: 'https://github.com/vikramrao/vuln-scanner',
+        imageColor: 'from-red-600 to-zinc-900',
+        completedAt: 'Jan 2026'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/vikramrao',
+      linkedin: 'https://linkedin.com/in/vikram-rao'
+    },
+    badges: ['First Project', '5 Projects Completed', 'Top Rated']
+  }
+];
+
+export const INITIAL_CLIENTS: Client[] = [
+  {
+    id: 'client-1',
+    name: 'Sarah Jenkins',
+    company: 'Apex EdTech Labs',
+    industry: 'Education & E-Learning',
+    email: 'sarah.jenkins@apexedtech.io',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    bio: 'Product Director at Apex EdTech. We empower students with digital learning tools and actively hire passionate student developers for production features.',
+    location: 'Bangalore / Remote',
+    status: 'Active',
+    rating: 4.9,
+    ratingCount: 18,
+    totalTasksPosted: 8,
+    joinedDate: '2025-06-10',
+    website: 'https://apexedtech.io'
+  },
+  {
+    id: 'client-2',
+    name: 'Marcus Rivera',
+    company: 'Nexa Digital Studio',
+    industry: 'Design & Creative Agency',
+    email: 'marcus@nexastudio.design',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+    bio: 'Founder & Creative Lead at Nexa Studio. We build immersive web experiences and brand identities for high-growth tech startups.',
+    location: 'Mumbai / Remote',
+    status: 'Active',
+    rating: 4.8,
+    ratingCount: 12,
+    totalTasksPosted: 5,
+    joinedDate: '2025-07-22',
+    website: 'https://nexastudio.design'
+  },
+  {
+    id: 'client-3',
+    name: 'Priya Sharma',
+    company: 'Campus Innovators Inc',
+    industry: 'Venture & Incubator',
+    email: 'priya@campusinnovators.org',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+    bio: 'Incubation Manager supporting university spin-offs and early stage founders with rapid prototyping and brand collateral.',
+    location: 'Hyderabad / On-Campus',
+    status: 'Active',
+    rating: 5.0,
+    ratingCount: 9,
+    totalTasksPosted: 6,
+    joinedDate: '2025-08-01',
+    website: 'https://campusinnovators.org'
+  },
+  {
+    id: 'client-4',
+    name: 'Dr. Raymond Chen',
+    company: 'HealthTrack Labs',
+    industry: 'MedTech & Wellness',
+    email: 'raymond.chen@healthtracklabs.com',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
+    bio: 'Chief Medical Officer directing digital health applications, patient monitoring tools, and wellness apps.',
+    location: 'Chennai / Hybrid',
+    status: 'Active',
+    rating: 4.7,
+    ratingCount: 14,
+    totalTasksPosted: 4,
+    joinedDate: '2025-09-12'
+  },
+  {
+    id: 'client-5',
+    name: 'David Vance',
+    company: 'FinGrow Analytics',
+    industry: 'FinTech & Analytics',
+    email: 'david.vance@fingrow.co',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+    bio: 'VP Engineering at FinGrow. We specialize in real-time portfolio dashboards, algorithmic calculators, and personal finance tools.',
+    location: 'Bangalore / Remote',
+    status: 'Active',
+    rating: 4.9,
+    ratingCount: 22,
+    totalTasksPosted: 9,
+    joinedDate: '2025-05-18'
+  }
+];
+
+export const INITIAL_TASKS: Task[] = [
+  {
+    id: 'task-101',
+    title: 'Modern Student Mentorship Portal Frontend (React + Tailwind)',
+    clientId: 'client-1', // Apex EdTech (Sarah Jenkins)
+    description: 'We need an energetic frontend developer to build the student-facing dashboard of our new peer mentorship system. Must be responsive, clean, and integrate with mock REST endpoints.',
+    category: 'Web Development',
+    requiredSkills: ['React', 'JavaScript', 'Tailwind CSS', 'HTML'],
+    budget: 450,
+    deadline: '2026-10-15',
+    expectedDuration: '2 - 3 weeks',
+    experienceLevel: 'Intermediate',
+    additionalRequirements: 'Clean component structure, mobile responsiveness, accessible form fields, and documentation.',
+    attachments: [
+      { name: 'Mentorship_Portal_Wireframes.pdf', size: '2.4 MB' },
+      { name: 'Design_Tokens_Guide.json', size: '18 KB' }
+    ],
+    status: 'Open',
+    createdAt: '2026-09-18'
+  },
+  {
+    id: 'task-102',
+    title: 'Interactive 3D Campus Tour Web Experience (Three.js/Canvas)',
+    clientId: 'client-3', // Campus Innovators
+    description: 'Create an engaging 3D campus explorer showcasing department buildings, lecture halls, and student centers using WebGL/Canvas.',
+    category: 'Web Development',
+    requiredSkills: ['JavaScript', 'HTML', 'CSS', 'React'],
+    budget: 600,
+    deadline: '2026-10-30',
+    expectedDuration: '3 - 4 weeks',
+    experienceLevel: 'Advanced',
+    additionalRequirements: 'Smooth 60fps performance on laptops, touch controls for mobile browsers, and building click modals.',
+    status: 'Open',
+    createdAt: '2026-09-20'
+  },
+  {
+    id: 'task-103',
+    title: 'Mobile Medical Tracker App Wireframes & Figma Prototype',
+    clientId: 'client-4', // HealthTrack Labs
+    description: 'Design complete UX flow for tracking patient vitals, medication adherence, and doctor video visits.',
+    category: 'UI/UX Design',
+    requiredSkills: ['Figma', 'UI/UX Design', 'Wireframing', 'Prototyping'],
+    budget: 380,
+    deadline: '2026-10-10',
+    expectedDuration: '1 - 2 weeks',
+    experienceLevel: 'Intermediate',
+    additionalRequirements: 'WCAG AAA color contrast for senior patients, clean clickable prototype.',
+    status: 'In Progress',
+    createdAt: '2026-09-10',
+    selectedStudentId: 'stu-2'
+  },
+  {
+    id: 'task-104',
+    title: 'Student Finance & Budgeting Calculator Engine',
+    clientId: 'client-5', // FinGrow Analytics
+    description: 'Develop an algorithmic budget optimizer in React calculating compound debt repayment and monthly savings projections.',
+    category: 'Web Development',
+    requiredSkills: ['React', 'TypeScript', 'SQL', 'Python'],
+    budget: 520,
+    deadline: '2026-09-01',
+    expectedDuration: '2 weeks',
+    experienceLevel: 'Intermediate',
+    additionalRequirements: 'Export to CSV and PDF, tested math functions.',
+    status: 'Completed',
+    createdAt: '2026-08-15',
+    selectedStudentId: 'stu-1' // Monisha K completed this!
+  },
+  {
+    id: 'task-105',
+    title: 'AI Document Classifier & Summarizer Python Script',
+    clientId: 'client-2', // Nexa Studio
+    description: 'Build a standalone CLI and FastAPI endpoint to parse incoming PDFs, extract metadata tags, and generate 3-sentence summaries.',
+    category: 'AI & Data Science',
+    requiredSkills: ['Python', 'FastAPI', 'Natural Language Processing'],
+    budget: 350,
+    deadline: '2026-10-25',
+    expectedDuration: '10 days',
+    experienceLevel: 'Beginner',
+    additionalRequirements: 'Comprehensive docstrings and unit test suite.',
+    status: 'Open',
+    createdAt: '2026-09-22'
+  },
+  {
+    id: 'task-106',
+    title: 'Brand Identity, Mascot & Social Media Pack for Campus Hackathon',
+    clientId: 'client-3', // Campus Innovators
+    description: 'We need a high-energy brand identity including primary logo, sticker designs, Instagram carousel templates, and sponsor badges.',
+    category: 'Branding & Design',
+    requiredSkills: ['Adobe Illustrator', 'Photoshop', 'Logo Design', 'Figma'],
+    budget: 300,
+    deadline: '2026-10-20',
+    expectedDuration: '1 week',
+    experienceLevel: 'Beginner',
+    additionalRequirements: 'Deliver vector source files (.AI / .SVG) and PNG exports.',
+    status: 'Draft',
+    createdAt: '2026-09-23'
+  }
+];
+
+export const INITIAL_APPLICATIONS: Application[] = [
+  // Multiple applicants on Task 101 - ready for the acceptance & bulk rejection demo!
+  {
+    id: 'app-201',
+    taskId: 'task-101',
+    studentId: 'stu-1', // Monisha K
+    proposalMessage: 'Hi Sarah, I would love to build this mentorship portal! I have built similar systems (like my Campus Hub project) with clean React components, robust state handling, and Tailwind CSS. I can deliver the core views within 10 days.',
+    expectedDelivery: '10 days',
+    proposedAmount: 450,
+    additionalMessage: 'Available to start immediately. Happy to hop on a call or review designs in detail.',
+    status: 'Pending',
+    appliedDate: '2026-09-19'
+  },
+  {
+    id: 'app-202',
+    taskId: 'task-101',
+    studentId: 'stu-2', // Rahul Varma
+    proposalMessage: 'Hello Sarah! While I specialize in UI/UX, I am proficient in React frontend markup and would ensure pixel-perfect fidelity with the Figma wireframes.',
+    expectedDelivery: '14 days',
+    proposedAmount: 430,
+    status: 'Pending',
+    appliedDate: '2026-09-19'
+  },
+  {
+    id: 'app-203',
+    taskId: 'task-101',
+    studentId: 'stu-3', // Ananya Roy
+    proposalMessage: 'Greetings! I have built several responsive React dashboards with Tailwind CSS. I can implement the mentorship search, booking modal, and profile displays efficiently.',
+    expectedDelivery: '12 days',
+    proposedAmount: 450,
+    status: 'Pending',
+    appliedDate: '2026-09-20'
+  },
+  // Application for task 102
+  {
+    id: 'app-204',
+    taskId: 'task-102',
+    studentId: 'stu-8', // Arjun Das
+    proposalMessage: 'I have hands-on experience with Three.js rendering pipelines and WebGL canvas optimizers. I can build the interactive campus map with custom camera transitions.',
+    expectedDelivery: '20 days',
+    proposedAmount: 580,
+    status: 'Pending',
+    appliedDate: '2026-09-21'
+  },
+  // Task 103 accepted application
+  {
+    id: 'app-205',
+    taskId: 'task-103',
+    studentId: 'stu-2',
+    proposalMessage: 'I would be thrilled to design the patient companion app! I have experience with healthcare UI standards and user testing.',
+    expectedDelivery: '10 days',
+    proposedAmount: 380,
+    status: 'Accepted',
+    appliedDate: '2026-09-11'
+  },
+  // Task 104 completed application
+  {
+    id: 'app-206',
+    taskId: 'task-104',
+    studentId: 'stu-1', // Monisha K
+    proposalMessage: 'I have strong experience with financial math in React and TypeScript. I will build an intuitive, fast calculator with export options.',
+    expectedDelivery: '14 days',
+    proposedAmount: 520,
+    status: 'Accepted',
+    appliedDate: '2026-08-16'
+  }
+];
+
+export const INITIAL_PROJECTS: Project[] = [
+  // Active Project for Monisha K
+  {
+    id: 'proj-301',
+    taskId: 'task-101-prev',
+    taskTitle: 'Campus Event Booking Engine & Ticketing System',
+    clientId: 'client-1', // Apex EdTech (Sarah Jenkins)
+    studentId: 'stu-1', // Monisha K
+    budget: 480,
+    startDate: '2026-09-10',
+    deadline: '2026-10-05',
+    status: 'In Progress',
+    progress: 65,
+    milestones: [
+      {
+        id: 'ms-1',
+        title: 'Component Architecture & Responsive Layout',
+        description: 'Set up Vite + React template, Tailwind design tokens, and base navbar/sidebar layout.',
+        dueDate: '2026-09-17',
+        status: 'Completed'
+      },
+      {
+        id: 'ms-2',
+        title: 'Event Filtering & Booking Form Modals',
+        description: 'Implement search bar, category filters, and student booking modal with validation.',
+        dueDate: '2026-09-25',
+        status: 'Completed'
+      },
+      {
+        id: 'ms-3',
+        title: 'Ticketing Confirmation & QR Code Generator',
+        description: 'Generate mock ticket PDF receipt and dynamic QR code pass for campus attendees.',
+        dueDate: '2026-10-03',
+        status: 'In Progress'
+      }
+    ],
+    files: [
+      {
+        id: 'file-1',
+        name: 'Event_Booking_Specs_v1.pdf',
+        size: '1.2 MB',
+        fileType: 'PDF Document',
+        uploadedBy: 'client',
+        uploadedByName: 'Sarah Jenkins',
+        uploadedDate: '2026-09-10'
+      },
+      {
+        id: 'file-2',
+        name: 'Theme_Branding_Assets.zip',
+        size: '4.8 MB',
+        fileType: 'ZIP Archive',
+        uploadedBy: 'client',
+        uploadedByName: 'Sarah Jenkins',
+        uploadedDate: '2026-09-12'
+      },
+      {
+        id: 'file-3',
+        name: 'Sprint_1_Progress_Screenshots.png',
+        size: '850 KB',
+        fileType: 'PNG Image',
+        uploadedBy: 'student',
+        uploadedByName: 'Monisha K',
+        uploadedDate: '2026-09-17'
+      }
+    ],
+    submissions: [
+      {
+        id: 'sub-1',
+        submissionMessage: 'Completed Milestone 1 & 2! The event listings, search filters, and responsive booking modal are fully functioning. Check out the demo preview link below.',
+        projectUrl: 'https://campus-events-demo.freeverse.app',
+        githubUrl: 'https://github.com/monishak/campus-booking-engine',
+        liveWebsiteUrl: 'https://campus-events-demo.freeverse.app',
+        submittedAt: '2026-09-24',
+        files: [{ name: 'Implementation_Report.pdf', size: '420 KB' }],
+        version: 1,
+        status: 'Pending Review'
+      }
+    ],
+    activities: [
+      {
+        id: 'act-1',
+        action: 'Project Created',
+        description: 'Sarah Jenkins accepted Monisha K for Campus Event Booking Engine.',
+        timestamp: '2026-09-10 10:30 AM',
+        actor: 'Sarah Jenkins'
+      },
+      {
+        id: 'act-2',
+        action: 'Milestone Completed',
+        description: 'Monisha K marked "Component Architecture & Responsive Layout" as Completed.',
+        timestamp: '2026-09-17 04:15 PM',
+        actor: 'Monisha K'
+      },
+      {
+        id: 'act-3',
+        action: 'File Uploaded',
+        description: 'Monisha K uploaded Sprint_1_Progress_Screenshots.png.',
+        timestamp: '2026-09-17 04:20 PM',
+        actor: 'Monisha K'
+      },
+      {
+        id: 'act-4',
+        action: 'Submission Uploaded',
+        description: 'Monisha K submitted Version 1 for Milestone 2 review.',
+        timestamp: '2026-09-24 09:00 AM',
+        actor: 'Monisha K'
+      }
+    ]
+  },
+  // Completed Project for Monisha K
+  {
+    id: 'proj-302',
+    taskId: 'task-104',
+    taskTitle: 'Student Finance & Budgeting Calculator Engine',
+    clientId: 'client-5', // FinGrow Analytics (David Vance)
+    studentId: 'stu-1', // Monisha K
+    budget: 520,
+    startDate: '2026-08-18',
+    deadline: '2026-09-01',
+    status: 'Completed',
+    progress: 100,
+    milestones: [
+      {
+        id: 'ms-201',
+        title: 'Calculator Math Engine & Unit Tests',
+        description: 'Implement compound interest formulas, student loan calculators, and test suites.',
+        dueDate: '2026-08-23',
+        status: 'Completed'
+      },
+      {
+        id: 'ms-202',
+        title: 'Interactive Chart Visualizer & UI',
+        description: 'Build interactive budget sliders and donut charts for monthly budget allocation.',
+        dueDate: '2026-08-29',
+        status: 'Completed'
+      }
+    ],
+    files: [
+      {
+        id: 'file-201',
+        name: 'Financial_Formulas_Spec.pdf',
+        size: '640 KB',
+        fileType: 'PDF Document',
+        uploadedBy: 'client',
+        uploadedByName: 'David Vance',
+        uploadedDate: '2026-08-18'
+      }
+    ],
+    submissions: [
+      {
+        id: 'sub-201',
+        submissionMessage: 'Final submission ready! All calculator formulas verified with 100% test coverage. Export to CSV is live.',
+        projectUrl: 'https://fingrow-demo.freeverse.app',
+        githubUrl: 'https://github.com/monishak/fingrow-budget',
+        submittedAt: '2026-08-30',
+        files: [{ name: 'FinGrow_Documentation.pdf', size: '920 KB' }],
+        version: 1,
+        status: 'Accepted'
+      }
+    ],
+    activities: [
+      {
+        id: 'act-201',
+        action: 'Project Completed',
+        description: 'David Vance approved the final submission and marked project as Completed.',
+        timestamp: '2026-09-01 02:30 PM',
+        actor: 'David Vance'
+      },
+      {
+        id: 'act-202',
+        action: 'Review Added',
+        description: 'David Vance left a 5-star review for Monisha K.',
+        timestamp: '2026-09-01 02:40 PM',
+        actor: 'David Vance'
+      }
+    ],
+    clientReviewed: true,
+    studentReviewed: true
+  }
+];
+
+export const INITIAL_MESSAGES: Message[] = [
+  {
+    id: 'msg-1',
+    conversationId: 'conv-client-1-stu-1',
+    senderId: 'client-1',
+    senderName: 'Sarah Jenkins',
+    senderRole: 'client',
+    recipientId: 'stu-1',
+    recipientName: 'Monisha K',
+    text: 'Hi Monisha! Thanks for kicking off the Campus Event Booking project so smoothly. Could we prioritize the ticketing confirmation view first?',
+    timestamp: '2026-09-22 10:15 AM',
+    projectId: 'proj-301',
+    read: true
+  },
+  {
+    id: 'msg-2',
+    conversationId: 'conv-client-1-stu-1',
+    senderId: 'stu-1',
+    senderName: 'Monisha K',
+    senderRole: 'student',
+    recipientId: 'client-1',
+    recipientName: 'Sarah Jenkins',
+    text: 'Hi Sarah! Absolutely. I have structured the ticket card with the dynamic QR code already and just pushed the initial preview to our demo link.',
+    timestamp: '2026-09-22 10:45 AM',
+    projectId: 'proj-301',
+    read: true
+  },
+  {
+    id: 'msg-3',
+    conversationId: 'conv-client-1-stu-1',
+    senderId: 'client-1',
+    senderName: 'Sarah Jenkins',
+    senderRole: 'client',
+    recipientId: 'stu-1',
+    recipientName: 'Monisha K',
+    text: 'That looks fantastic! The responsiveness on mobile is super slick. Keep up the great work!',
+    timestamp: '2026-09-22 11:30 AM',
+    projectId: 'proj-301',
+    read: true
+  }
+];
+
+export const INITIAL_EVENTS: PlatformEvent[] = [
+  {
+    id: 'evt-1',
+    name: 'HackVerse 2026: 36-Hour National Campus Hackathon',
+    description: 'The flagship Freeverse national student hackathon. Build full-stack solutions for campus automation, fintech, and open education with $5,000+ in awards.',
+    category: 'Hackathons',
+    date: '2026-10-18',
+    time: '09:00 AM - 09:00 PM',
+    venue: 'Campus Innovation Arena & Virtual Discord',
+    mode: 'Hybrid',
+    organizer: 'Freeverse Core Team & Tech Club',
+    registrationDeadline: '2026-10-14',
+    maxParticipants: 350,
+    bannerGradient: 'from-indigo-600 via-purple-600 to-pink-600',
+    status: 'Upcoming',
+    tags: ['Web3', 'AI', 'Fintech', 'Campus Tech']
+  },
+  {
+    id: 'evt-2',
+    name: 'Full Stack React & Modern Architecture Masterclass',
+    description: 'An intensive, hands-on workshop guiding students through enterprise state management, clean component architecture, and serverless deployments.',
+    category: 'Workshops',
+    date: '2026-10-08',
+    time: '02:00 PM - 05:30 PM',
+    venue: 'Google Meet Virtual Auditorium',
+    mode: 'Online',
+    organizer: 'Institute Developer Circle',
+    registrationDeadline: '2026-10-07',
+    maxParticipants: 180,
+    bannerGradient: 'from-blue-600 via-cyan-600 to-teal-500',
+    status: 'Upcoming',
+    tags: ['React', 'TypeScript', 'Clean Code']
+  },
+  {
+    id: 'evt-3',
+    name: 'NextGen Product Design & Figma System Sprint',
+    description: 'Learn how modern tech agencies design scalable design tokens, component variants, and interactive user flows that convert.',
+    category: 'Workshops',
+    date: '2026-10-12',
+    time: '10:00 AM - 01:00 PM',
+    venue: 'Design Studio Lab 3B',
+    mode: 'Offline',
+    organizer: 'Nexa Digital Studio',
+    registrationDeadline: '2026-10-10',
+    maxParticipants: 60,
+    bannerGradient: 'from-fuchsia-600 via-rose-500 to-amber-500',
+    status: 'Upcoming',
+    tags: ['UI/UX', 'Figma', 'Design Systems']
+  },
+  {
+    id: 'evt-4',
+    name: 'National Algorithmic Coding Challenge 2026',
+    description: 'Compete against students nationwide in competitive programming, dynamic programming puzzles, and graph algorithms.',
+    category: 'Competitions',
+    date: '2026-10-22',
+    time: '06:00 PM - 09:00 PM',
+    venue: 'Online Judge Platform',
+    mode: 'Online',
+    organizer: 'Algorithms & Data Club',
+    registrationDeadline: '2026-10-21',
+    maxParticipants: 500,
+    bannerGradient: 'from-emerald-600 via-teal-600 to-blue-700',
+    status: 'Upcoming',
+    tags: ['Data Structures', 'Competitive Coding', 'Python', 'C++']
+  },
+  {
+    id: 'evt-5',
+    name: 'From Campus Project to Paid Client: Freelance Masterclass',
+    description: 'Founder panel revealing how to price freelance contracts, write winning proposals, communicate with clients, and build enduring portfolios.',
+    category: 'Career Sessions',
+    date: '2026-10-15',
+    time: '05:00 PM - 07:00 PM',
+    venue: 'Virtual Zoom Room',
+    mode: 'Online',
+    organizer: 'Freeverse Mentorship Network',
+    registrationDeadline: '2026-10-14',
+    maxParticipants: 250,
+    bannerGradient: 'from-amber-600 via-orange-600 to-red-600',
+    status: 'Upcoming',
+    tags: ['Freelancing', 'Negotiation', 'Career Growth']
+  },
+  {
+    id: 'evt-6',
+    name: 'Freeverse Campus Creator Mixer & Open Source Showcase',
+    description: 'Connect with fellow student builders, designers, and open-source contributors over project demos, lightning talks, and networking snacks.',
+    category: 'Community Meetups',
+    date: '2026-10-20',
+    time: '04:30 PM - 07:00 PM',
+    venue: 'Student Innovation Center Courtyard & Lounge',
+    mode: 'Offline',
+    organizer: 'Freeverse Community Chapter',
+    registrationDeadline: '2026-10-19',
+    maxParticipants: 120,
+    bannerGradient: 'from-violet-600 via-purple-600 to-indigo-700',
+    status: 'Upcoming',
+    tags: ['Networking', 'Community', 'Open Source', 'Student Demos']
+  },
+  {
+    id: 'evt-7',
+    name: 'Student Freelancers & Startup Founders Chai Meetup',
+    description: 'An informal round-table meetup between early-stage campus startup founders and student freelancers to discuss real brief opportunities.',
+    category: 'Community Meetups',
+    date: '2026-10-28',
+    time: '05:00 PM - 06:45 PM',
+    venue: 'Campus Tech Cafe & Terrace',
+    mode: 'Offline',
+    organizer: 'Campus Entrepreneurship Cell',
+    registrationDeadline: '2026-10-27',
+    maxParticipants: 50,
+    bannerGradient: 'from-indigo-700 via-blue-600 to-cyan-600',
+    status: 'Upcoming',
+    tags: ['Freelancing', 'Founders', 'Networking', 'Chai & Code']
+  },
+  {
+    id: 'evt-8',
+    name: 'AI in Engineering & Ethical Tech Systems Seminar',
+    description: 'Distinguished faculty and industry guest lectures examining generative AI integration, copyright, safety guardrails, and career implications.',
+    category: 'Seminars',
+    date: '2026-10-24',
+    time: '11:00 AM - 01:30 PM',
+    venue: 'Main University Auditorium & Live Stream',
+    mode: 'Hybrid',
+    organizer: 'Department of Computer Science & AI Club',
+    registrationDeadline: '2026-10-23',
+    maxParticipants: 300,
+    bannerGradient: 'from-slate-800 via-indigo-900 to-purple-900',
+    status: 'Upcoming',
+    tags: ['Artificial Intelligence', 'Ethics', 'Seminars']
+  },
+  {
+    id: 'evt-9',
+    name: 'Cloud Native DevOps & Containerization Sprint',
+    description: 'Hands-on technical lab setting up Docker environments, multi-stage builds, and continuous deployment workflows on Linux servers.',
+    category: 'Technical Events',
+    date: '2026-10-16',
+    time: '02:00 PM - 05:00 PM',
+    venue: 'Advanced Computing Lab 4',
+    mode: 'Offline',
+    organizer: 'Cloud & Infrastructure Club',
+    registrationDeadline: '2026-10-15',
+    maxParticipants: 80,
+    bannerGradient: 'from-teal-600 via-emerald-600 to-blue-700',
+    status: 'Upcoming',
+    tags: ['DevOps', 'Docker', 'Linux', 'Cloud']
+  },
+  {
+    id: 'evt-10',
+    name: 'Campus Startup Pitch Day & Creative Storytelling',
+    description: 'Pitch non-technical venture ideas, social impact campaigns, and campus branding projects to peer evaluators and incubator mentors.',
+    category: 'Non-Technical Events',
+    date: '2026-10-26',
+    time: '03:00 PM - 06:00 PM',
+    venue: 'Business Incubation Amphitheater',
+    mode: 'Offline',
+    organizer: 'School of Management & Enterprise',
+    registrationDeadline: '2026-10-25',
+    maxParticipants: 100,
+    bannerGradient: 'from-rose-600 via-pink-600 to-amber-600',
+    status: 'Upcoming',
+    tags: ['Pitching', 'Communication', 'Leadership', 'Storytelling']
+  },
+  {
+    id: 'evt-11',
+    name: 'Architecting Scalable Microservices & APIs Webinar',
+    description: 'Virtual masterclass on REST vs GraphQL, Redis caching layers, and database query optimization for high-traffic student applications.',
+    category: 'Webinars',
+    date: '2026-10-29',
+    time: '06:00 PM - 07:30 PM',
+    venue: 'Zoom Live Broadcast',
+    mode: 'Online',
+    organizer: 'Institute Engineering Alumni Network',
+    registrationDeadline: '2026-10-28',
+    maxParticipants: 400,
+    bannerGradient: 'from-cyan-600 via-blue-600 to-indigo-700',
+    status: 'Upcoming',
+    tags: ['Webinar', 'Backend', 'APIs', 'Microservices']
+  }
+];
+
+export const INITIAL_REGISTRATIONS: EventRegistration[] = [
+  {
+    id: 'reg-1',
+    eventId: 'evt-1',
+    studentId: 'stu-1',
+    name: 'Monisha K',
+    email: 'monisha0733@gmail.com',
+    campusId: '24CSE032',
+    department: 'Computer Science and Engineering',
+    phone: '+91 98451 23456',
+    registeredAt: '2026-09-20'
+  },
+  {
+    id: 'reg-2',
+    eventId: 'evt-2',
+    studentId: 'stu-1',
+    name: 'Monisha K',
+    email: 'monisha0733@gmail.com',
+    campusId: '24CSE032',
+    department: 'Computer Science and Engineering',
+    phone: '+91 98451 23456',
+    registeredAt: '2026-09-21'
+  },
+  {
+    id: 'reg-3',
+    eventId: 'evt-1',
+    studentId: 'stu-4',
+    name: 'Karthik Raman',
+    email: 'karthik.r@campus.edu',
+    campusId: '24AIML012',
+    department: 'AI & Data Science',
+    phone: '+91 98454 56789',
+    registeredAt: '2026-09-22'
+  }
+];
+
+export const INITIAL_GALLERY: GalleryItem[] = [
+  {
+    id: 'gal-1',
+    eventId: 'evt-past-1',
+    eventName: 'HackVerse Autumn 2025 Grand Finale',
+    caption: 'Student teams pitching AI solutions to industry venture partners in the central auditorium.',
+    description: 'Over 280 students collaborated across 48 continuous hours, resulting in 42 deployed applications and 6 corporate sponsorships.',
+    date: 'Nov 2025',
+    themeColor: 'from-indigo-600 to-blue-800',
+    category: 'Hackathons'
+  },
+  {
+    id: 'gal-2',
+    eventId: 'evt-past-2',
+    eventName: 'Winter Design Sprint & Figma Critique',
+    caption: 'Peer reviews and user flow testing in the Creative Media Wing.',
+    description: 'Students mapped real-world SaaS wireframes and conducted live think-aloud usability testing with faculty and alumni.',
+    date: 'Dec 2025',
+    themeColor: 'from-pink-600 to-purple-800',
+    category: 'Workshops'
+  },
+  {
+    id: 'gal-3',
+    eventId: 'evt-past-3',
+    eventName: 'Open Source Community Demo Night',
+    caption: 'Student maintainers presenting pull requests and developer tools built on Freeverse.',
+    description: 'Celebration of student software contributions with badges awarded to the top 15 open source contributors.',
+    date: 'Jan 2026',
+    themeColor: 'from-teal-600 to-emerald-800',
+    category: 'Community Meetups'
+  },
+  {
+    id: 'gal-4',
+    eventId: 'evt-past-4',
+    eventName: 'National Algorithmic Coding Cup 2025',
+    caption: 'Trophy ceremony celebrating algorithm winners solving NP-hard optimization puzzles.',
+    description: 'Over 600 contestants across 24 collegiate chapters participated in the 4-hour live leaderboard competition.',
+    date: 'Feb 2026',
+    themeColor: 'from-amber-600 to-orange-800',
+    category: 'Competitions'
+  }
+];
+
+export const INITIAL_REVIEWS: Review[] = [
+  {
+    id: 'rev-1',
+    projectId: 'proj-302',
+    taskId: 'task-104',
+    authorId: 'client-5',
+    authorName: 'David Vance (FinGrow Analytics)',
+    authorRole: 'client',
+    targetId: 'stu-1',
+    targetName: 'Monisha K',
+    rating: 5,
+    comment: 'Monisha delivered exceptional work! The math formulas for compound debt were exact, and the React UI was fast, clean, and polished. Highly recommended for full-stack tasks.',
+    createdAt: '2026-09-01'
+  },
+  {
+    id: 'rev-2',
+    projectId: 'proj-302',
+    taskId: 'task-104',
+    authorId: 'stu-1',
+    authorName: 'Monisha K',
+    authorRole: 'student',
+    targetId: 'client-5',
+    targetName: 'David Vance (FinGrow Analytics)',
+    rating: 5,
+    comment: 'David was fantastic to collaborate with. Clear project brief, prompt answers to technical queries, and prompt milestone approval!',
+    createdAt: '2026-09-02'
+  },
+  {
+    id: 'rev-3',
+    projectId: 'proj-past-1',
+    taskId: 'task-past-1',
+    authorId: 'client-1',
+    authorName: 'Sarah Jenkins (Apex EdTech)',
+    authorRole: 'client',
+    targetId: 'stu-4',
+    targetName: 'Karthik Raman',
+    rating: 5,
+    comment: 'Karthik is a standout machine learning engineer. His document parser was rapid and thoroughly documented with unit tests.',
+    createdAt: '2026-08-25'
+  }
+];
+
+export const INITIAL_NOTIFICATIONS: NotificationItem[] = [
+  {
+    id: 'notif-1',
+    recipientId: 'stu-1', // Monisha K
+    title: 'Milestone 2 Under Review',
+    message: 'Sarah Jenkins is reviewing your submission for Campus Event Booking Engine.',
+    type: 'info',
+    createdAt: '2026-09-24 09:30 AM',
+    read: false
+  },
+  {
+    id: 'notif-2',
+    recipientId: 'stu-1',
+    title: 'New Matching Task Posted',
+    message: 'Apex EdTech posted "Modern Student Mentorship Portal Frontend" matching your skills.',
+    type: 'success',
+    createdAt: '2026-09-18 10:00 AM',
+    read: true
+  },
+  {
+    id: 'notif-3',
+    recipientId: 'client-1',
+    title: 'New Application Received',
+    message: 'Monisha K applied for "Modern Student Mentorship Portal Frontend".',
+    type: 'info',
+    createdAt: '2026-09-19 11:20 AM',
+    read: false
+  },
+  {
+    id: 'notif-4',
+    recipientId: 'client-1',
+    title: 'Submission Received',
+    message: 'Monisha K submitted Milestone 2 deliverables for Campus Event Booking Engine.',
+    type: 'success',
+    createdAt: '2026-09-24 09:02 AM',
+    read: false
+  },
+  {
+    id: 'notif-5',
+    recipientId: 'admin',
+    title: 'New Task Published',
+    message: 'Client-1 published a new task with budget $450.',
+    type: 'info',
+    createdAt: '2026-09-18 10:00 AM',
+    read: false
+  },
+  {
+    id: 'notif-6',
+    recipientId: 'admin',
+    title: 'New Student Registration',
+    message: 'Student ID 24CSE032 (Monisha K) verified credentials and active profile.',
+    type: 'success',
+    createdAt: '2026-09-15 08:00 AM',
+    read: true
+  }
+];
+
+export const INITIAL_REPORTS: Report[] = [
+  {
+    id: 'rep-1',
+    reportedBy: 'stu-3',
+    reporterRole: 'student',
+    targetType: 'task',
+    targetId: 'task-spam-demo',
+    targetName: 'Suspicious External Survey Task',
+    reason: 'Spam',
+    description: 'Task requests visiting external redirect link without clear project deliverables.',
+    status: 'Open',
+    createdAt: '2026-09-21 03:00 PM'
+  }
+];

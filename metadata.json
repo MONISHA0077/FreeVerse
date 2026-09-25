@@ -1,0 +1,6 @@
+{
+  "name": "Freeverse - Student Freelancing & Community Platform",
+  "description": "Learn. Create. Freelance. Grow. Freeverse connects talented students with real-world projects, freelance opportunities, events, and collaborative community.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
